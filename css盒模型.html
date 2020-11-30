@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    css 盒模型 ---深度考察 边距重叠 和 BFC(解决边距重叠的问题)
+    padding + margin +border + height+ width
+    区分 标准盒模型与IE盒模型
+
+    标准模型 计算宽高 = height+width
+    IE模型 计算宽高 = content+ border+padding
+
+    css 如何设置 1. box-sizing:content-box 标准模型 默认的
+    2. box-sizing:border-box IE模型
+
+    js获取 宽高
+    dom.style.height / width
+    dom.currentStyle.height / width//ie支持 这个属于解析后的宽高
+    window.getComputedStyle(dom).height / width
+    dom.getBoundingClientRect().height / width 计算元素的绝对位置
+
+
+    BFC 即 块级格式化上下文
+    BFC 原理
+    1.BFC垂直边距会发生重叠
+    2.BFC区域不会与浮动元素的box进行重叠
+    3.BFC在页面上是一个独立的容器 外面与里面不会相互影响
+    4.BFC会计算浮动元素的宽高
+
+    如何创建BFC
+    1. overflow :hidden
+    2.float 的值不为none
+    3.position 的值不为static 或者 relative
+    4.dispaly table 那几个
+
+    BFC 使用场景
+    1.解决边距问题
+    2.布局时 需要创建BFC 两栏布局 左侧浮动
+    3.子元素浮动 父元素高度为0的时候
+
+    <script>
+    </script>
+</body>
+
+</html>

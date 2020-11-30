@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        1.类与实例
+         类的声明
+         生成实例
+        2.类与继承
+        如何实现继承
+        继承的几种方式
+        
+        
+        */
+        // 类的声明  函数式
+        function animal() {
+            this.name = 'name'
+        }
+        // 类的声明  es6  class式
+        class animal2 {
+            constructor(name) {
+                this.name = name
+            }
+        }
+
+        // 通过类实例化 生成一个对象
+        var tuzi = new animal()
+        var laohu = new animal2()
+
+        // 继承方式 1.借助构造函数进行继承  缺点：animal原型上的东西不会被继承
+        function ciwei() {
+            animal.call(this)// call和apply 改变了函数的上下文
+            this.type = "child"
+        }
+        // 继承方式 2.借助原型链进行继承 缺点：改原型上的属性  每个实例化的类 都被改变了
+        function gou() {
+            this.type = "child"
+        }
+        gou.prototype = new animal()
+
+        // 继承方式 3.组合继承  
+        function mao() {
+            animal.call(this)
+            this.type = "child"
+        }
+        map.prototype = new animal()
+
+        // 继承方式 4.优化组合继承 1    缺点 没法区分是被谁实例化的  是animal 还是 ji  instanceOf都是true
+        function ji() {
+            animal.call(this)
+            this.type = "child"
+        }
+        ji.prototype = animal.prototype
+        // 继承方式 5.优化组合继承 2    
+        function zhu() {
+            animal.call(this)
+            this.type = "child"
+        }
+        zhu.prototype = Object.create(animal.prototype)
+        zhu.prototype.constrictor = zhu
+    </script>
+</body>
+
+</html>

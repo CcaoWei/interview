@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>布局</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            height: 100px;
+        }
+
+        .buju1 {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .buju1-left {
+            width: 300px;
+
+            background: purple;
+        }
+
+        .buju1-center {
+            background: pink;
+
+            flex: 1;
+        }
+
+        .buju1-right {
+            background: plum;
+            width: 300px;
+        }
+
+
+        .buju2 {
+            margin-bottom: 10px;
+            display: flex;
+        }
+
+        .buju2-left {
+            width: 300px;
+
+            float: left;
+            background: purple;
+        }
+
+        .buju2-center {
+            background: pink;
+            float: left;
+            width: calc(100% - 600px);
+        }
+
+        .buju2-right {
+            float: left;
+            background: plum;
+            width: 300px;
+        }
+
+
+        .buju3 {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .buju3-left {
+            width: 300px;
+
+            position: absolute;
+            left: 0;
+            background: purple;
+        }
+
+        .buju3-center {
+            width: calc(100% - 600px);
+            /*   也可以 left:300px; right: 300px; 不定宽度 */
+            margin: 0 auto;
+            background: pink;
+            position: absolute;
+            left: 300px;
+        }
+
+        .buju3-right {
+            width: 300px;
+            position: absolute;
+            background: plum;
+            right: 0;
+        }
+
+
+        .buju4 {
+            margin-bottom: 10px;
+            display: grid;
+            width: 100%;
+            grid-template-rows: 100px;
+            grid-template-columns: 300px auto 300px;
+        }
+
+        .buju4-left {
+            background: purple;
+        }
+
+        .buju4-center {
+            background: pink;
+        }
+
+        .buju4-right {
+            background: plum;
+        }
+
+
+        .buju5 {
+            margin-bottom: 10px;
+            display: table;
+            width: 100%;
+            /*  table布局一定要写width */
+        }
+
+        .buju5-left {
+            width: 300px;
+            display: table-cell;
+            background: purple;
+        }
+
+        .buju5-center {
+            background: pink;
+            display: table-cell;
+        }
+
+        .buju5-right {
+            display: table-cell;
+            width: 300px;
+            background: plum;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <!--
+             如果不定高的话  以下三中布局展现的缺点
+            浮动： 当中间内容多的时候内容靠左去了
+            网格： 超出 高度不能自适应
+            定位：超出 高度不能自适应
+        
+        -->
+
+        <!-- flex页面布局 
+        
+         
+        优点：解决 浮动布局和定位布局的缺点  css3提出的
+        -->
+        <article class="buju1">
+            <div class="buju1-left"></div>
+            <div class="buju1-center">flex页面布局</div>
+            <div class="buju1-right"></div>
+        </article>
+        <!-- 浮动页面布局 
+            缺点： 脱离文档流
+            优点：兼容性好
+        -->
+        <article class="buju2">
+            <div class="buju2-left"></div>
+            <div class="buju2-center">浮动页面布局</div>
+            <div class="buju2-right"></div>
+        </article>
+        <!-- 定位页面布局 
+            缺点： 脱离文档流  其余元素也需要定位
+            优点：快速
+        -->
+        <article class="buju3">
+            <div class="buju3-left"></div>
+            <div class="buju3-center">定位页面布局</div>
+            <div class="buju3-right"></div>
+        </article>
+        <!-- 网格页面布局  
+         优点：代码简洁
+            
+        -->
+        <article class="buju4">
+            <div class="buju4-left"></div>
+            <div class="buju4-center">网格页面布局</div>
+            <div class="buju4-right"></div>
+        </article>
+        <!-- table页面布局 
+        
+         缺点： 单元格高度超出  两侧也会增高  
+         优点：兼容性好
+        -->
+        <article class="buju5">
+            <div class="buju5-left"></div>
+            <div class="buju5-center">table页面布局</div>
+            <div class="buju5-right"></div>
+        </article>
+    </div>
+</body>
+
+</html>
