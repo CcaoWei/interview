@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!--
+    1.资源压缩合并，减少http的请求 比如说精灵图啊 还有一些打包 多个js css 资源合并
+    2.非核心代码异步加载
+    ------异步加载的方式
+    动态加载脚本
+    defer 在script标签上 加上这两个东西
+    async 在script标签上 加上这两个东西
+    ----- 异步加载的区别
+    defer 是在html解析完成之后才会执行 多个的话 依次执行
+    async 是在加载完之后立即执行 多个的话 执行顺序和加载顺序无关 
+    3.利用浏览器缓存
+    ---缓存的分类  
+        比如说css 缓存起来 根据哈希数对比是否做了更改
+
+        1）强缓存
+        2）协商缓存
+    ---- 缓存的原理
+    4.使用cdn 属于网络优化 使用cdn地址
+
+    5.预解析dns
+    a标签默认预解析
+    但是https是默认关闭的 meta标签就是默认打开预解析的
+    <meta http-equiv="x-dns-prefetch-content" content="on">
+    <link rel='dns-prefetch' href="//host_name_to_prefeth.com"> 
+    6.错误的分类    问题---如何保证你的产品质量
+    前端错误分类
+        即时运行错误---代码错误
+        资源加载错误
+    错误的捕获方式
+        即时运行错误---代码错误
+            捕获方式：try catch  window.onerror
+        资源加载错误
+            捕获方式：object.onerror Error事件捕获 能拿到错误信息  有的高级浏览器会有一个属性
+            performance.getEntries()方法 返回一个数组（所有的资源错误）
+            延伸： 跨域的js运行错误可以捕获嘛，错误提示是什么，应该怎么处理
+                    可以，出现一个 script error 但是不会告诉你是哪个文件  
+                    可以再客户端的script上标注一个属性crossorigin 服务端也需要处理 
+                    在js资源响应头设置Access-control-allow-origin:*
+        
+    上报错误的基本原理
+        1.ajax通信方式上报
+        2.利用image对象上报
+            <script>
+                (new Image()).src = 'http://baidu.com/main?cccc=dkak';
+            </script>
+
+
+-->
+
+
+
+    <div></div>
+</body>
+
+</html>

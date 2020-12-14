@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>日历插件</title>
+    <style>
+        table {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="date" onchange="myCanlendar(this)" />
+    <table border=1>
+        <thead>
+            <tr>
+                <th>一</th>
+                <th>二</th>
+                <th>三</th>
+                <th>四</th>
+                <th>五</th>
+                <th>六</th>
+                <th>日</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        var log = console.log;
+        var time = new Date();
+        var arr = [time.getFullYear(), time.getMonth() + 1, time.getDate()];
+        var dateStr = arr.join('-').toString();
+        myCanlendar(dateStr)
+        function myCanlendar(target) {
+            document.getElementsByTagName('tbody')[0].innerHTML = '';
+            target = target.value || target;
+            // 获取当前日期 yyyy-mm-dd
+            var dateTemp = target.split('-')
+            var currentDate = new Date(dateTemp[0], dateTemp[1], dateTemp[2])
+            let dateArr = [currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()];
+            log('获取当前日期:' + dateArr.join('-').toString());
+
+            // 获取当前月对应的最大天数
+            var maxDayObj = new Date(dateArr[0], dateArr[1], 0);
+            var maxDay = maxDayObj.getDate();
+            log('当前月对应的最大天数:' + maxDay)
+            log('当前月对应的最大天数1:' + maxDayObj)
+            log('当前月对应的最大天数2:' + dateArr)
+
+            // 获取当前日期第一天对应周几
+            var firstDayObj = new Date(dateArr[0], dateArr[1] - 1, 1);
+            var firstDay = firstDayObj.getDay();
+            firstDay = firstDay == 0 ? 7 : firstDay;
+            log('获取当前日期第一天对应周几:' + firstDay)
+
+            // 打印表格
+            var spaceOnce = true;
+            var tab = "<tr>";
+            for (var i = 1; i <= maxDay; i++) {
+                // 打印最前面的空格子,确保只打印一次
+                if (firstDay > 0 && spaceOnce) {
+                    for (var j = 1; j < firstDay; j++) {
+                        tab += '<td>&nbsp</td>';
+                    }
+                    spaceOnce = false;
+                }
+                tab += '<td>' + i + '</td>';
+
+                if ((i - (8 - firstDay)) % 7 == 0) {
+                    tab += '</tr><tr>'
+                }
+                /*
+                如果某月的第一天是周日，那么格子总数会有42个，反之35个就够了，这里按42个打印
+                // 打印最后几个空格子， tbody总共应有42个格子,-天数 -前面的空格子
+                */
+                var lastSpace = 42 - maxDay - (firstDay - 1);
+                log('最后总共有空格:' + lastSpace + ",倒数第二行空格:" + (lastSpace - 7))
+                if (i == maxDay && lastSpace > 0) {
+                    for (var k = 0; k < lastSpace; k++) {
+                        tab += '<td>&nbsp</td>';
+                        // 减7是计算倒数第二行最后有几个空格,然后换下一行.
+                        if ((lastSpace - 7) > 0 && k + 1 == (lastSpace - 7)) tab += '</tr><tr>'
+                    }
+                }
+            }
+            tab += '</tr>';
+            // console.log(tab)
+            document.getElementsByTagName('tbody')[0].innerHTML = tab;
+        }   
+    </script>
+</body>
+
+</html>

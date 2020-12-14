@@ -14,7 +14,6 @@
             域名 端口号 协议不一样都属于同源策略
             从一个域名下无法获取另一个域名下的 存储 dom ajax请求也不能发送
 
-
     前后端如何通信
         ajax           
         websocket    
@@ -30,9 +29,6 @@
         }
      }
      xhr.send(null)
-
-
-
      兼容性处理
         xmlHttpReques 需要兼容性   ie 火狐 或者别的 有的浏览器不支持
 
@@ -63,7 +59,8 @@
         ws.onclose = function(evt){ 
             
         }
-     cors     fetch      支持跨域通信的 ajax   为什么会支持跨域通信？？？  浏览器会拦截跨域请求，跨域的时候会在请求头中加一个orgin
+     cors     fetch      支持跨域通信的 ajax   为什么会支持跨域通信？？？  
+            浏览器会拦截跨域请求，跨域的时候会在请求头中加一个orgin
 
 
 
