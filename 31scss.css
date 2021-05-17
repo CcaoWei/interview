@@ -1,0 +1,49 @@
+/* 　$blue : #1875e7;
+
+ 　　div {
+ 　　　color : $blue;
+　　} */
+/* 计算功能 */
+/* 　body {
+    margin: (14px/2);
+    top: 50px + 100px;
+    right: $var * 10%;
+  } */
+/* 4.1 继承 */
+/* .class1 {
+  border: 1px solid #ddd;
+}
+.class2 {
+    @extend .class1;
+    font-size:120%;
+} */
+/* Mixin 
+使用@mixin命令，定义一个代码块。
+使用@include命令，调用这个mixin。
+mixin的强大之处，在于可以指定参数和缺省值。
+*/
+/* @mixin left {
+    　　　　float: left;
+    　　　　margin-left: 10px;
+    　　}
+    　　div {
+        　　　　@include left;
+        　　}
+        
+        
+        　　@mixin left($value: 10px) {
+　　　　float: left;
+　　　　margin-right: $value;
+　　}
+　　div {
+　　　　@include left(20px);
+　　}
+        */
+/* 颜色函数
+
+SASS提供了一些内置的颜色函数，以便生成系列颜色。
+
+　　lighten(#cc3, 10%) // #d6d65c
+　　darken(#cc3, 10%) // #a3a329
+　　grayscale(#cc3) // #808080
+　　complement(#cc3) // #33c */

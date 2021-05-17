@@ -1,3 +1,94 @@
+
+1.vue优点？
+答：轻量级框架：只关注视图层，是一个构建数据的视图集合，大小只有几十kb；
+简单易学：国人开发，中文文档，不存在语言障碍 ，易于理解和学习；
+双向数据绑定：保留了angular的特点，在数据操作方面更为简单；
+组件化：保留了react的优点，实现了html的封装和重用，在构建单页面应用方面有着独特的优势；
+视图，数据，结构分离：使数据的更改更为简单，不需要进行逻辑代码的修改，只需要操作数据就能完成相关操作；
+虚拟DOM：dom操作是非常耗费性能的， 不再使用原生的dom操作节点，极大解放dom操作，但具体操作的还是dom不过是换了另一种方式；
+运行速度更快:相比较与react而言，同样是操作虚拟dom，就性能而言，vue存在很大的优势。
+15.v-on可以监听多个方法吗？
+答：可以，栗子：<input type="text" v-on="{ input:onInput,focus:onFocus,blur:onBlur, }">。
+20.单页面应用和多页面应用区别及优缺点
+答：单页面应用（SPA），通俗一点说就是指只有一个主页面的应用，浏览器一开始要加载所有必须的 html, js, css。所有的页面内容都包含在这个所谓的主页面中。但在写的时候，还是会分开写（页面片段），然后在交互的时候由路由程序动态载入，单页面的页面跳转，仅刷新局部资源。多应用于pc端。
+多页面（MPA），就是指一个应用中有多个页面，页面跳转时是整页刷新
+单页面的优点：
+用户体验好，快，内容的改变不需要重新加载整个页面，基于这一点spa对服务器压力较小；前后端分离；页面效果会比较炫酷（比如切换页面内容时的专场动画）。
+单页面缺点：
+不利于seo；导航不可用，如果一定要导航需要自行实现前进、后退。（由于是单页面不能用浏览器的前进后退功能，所以需要自己建立堆栈管理）；初次加载时耗时多；页面复杂度提高很多。
+ 
+ 
+ 什么是 vue 生命周期？有什么作用？
+答：每个 Vue 实例在被创建时都要经过一系列的初始化过程——例如，需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。同时在这个过程中也会运行一些叫做 生命周期钩子 的函数，这给了用户在不同阶段添加自己的代码的机会。（ps：生命周期钩子就是生命周期函数）例如，如果要通过某些插件操作DOM节点，如想在页面渲染完后弹出广告窗， 那我们最早可在mounted 中进行。
+
+vuex有哪几种属性？
+答：有五种，分别是 State、 Getter、Mutation 、Action、 Module
+state => 基本数据(数据源存放地)
+getters => 从基本数据派生出来的数据
+mutations => 提交更改数据的方法，同步！
+actions => 像一个装饰器，包裹mutations，使之可以异步。
+modules => 模块化Vuex
+
+1.v-show 和 v-if 的区别
+    v-show是通过dispaly 控制显示隐藏的
+    v-if 是组件真正的销毁和渲染，频繁切换状态用v-show 否则用v-if
+2.为何在v-for中使用key
+    在v-for中用key是因为在diff算法中通过tag和key来判断是否是sameNode，这样可以减少渲染次数，提升渲染性能
+3.描述vue组件生命周期（父子组件）
+4.vue组件如何通讯
+    父子组件  props和$emit
+    自定义事件  event.$no  event.$off event.$emit
+    vuex
+5.描述组件渲染和更新的过程
+    vue原理的三大模块，第一个就是响应式，监听属性变化，第二部分就是模板渲染，第三块虚拟dom
+6.双向数据绑定v-model的实现原理
+    input元素的value = this.name
+    绑定的input事件 this.name = $event.target.value
+    data更新触发re-render
+7.对于mvvm的理解  画图
+    view -> viewModel（dom listeners directives）->model
+    view <- viewModel（dom listeners directives）<-model
+    dom             vue                            plain javasript objects
+8.computed有什么特点
+    最大的特点就是缓存，data不变的话不会重新计算，所以说合理的使用computed能够提高性能。
+9.为何组件data必须是一个函数
+    组件的export default看似是一个对象，实际编译出来是一个class类，我在每个地方使用这个组件的时候，
+    相当与实例化了一个这个类，实例化执行data的时候如果data不是一个函数的话，那每一个实例的数据都一样了 
+    数据就会共享，达不到我们想要的独立性
+10.ajax请求应该放在哪个生命周期
+    mounted中，js是单线程的 ajax是异步获取数据，放在mounted之前没有用，只会让逻辑更加混乱
+11.如何将组建所有的props传递给子组件
+    $props 
+    <User v-bind="$props" />
+12.如何自己实现v-model
+13.多个组件有相同的逻辑，如何抽离？
+    mixin  
+    缺点：
+14.何时使用异步组件
+    基本上就是加载大组件的时候，加载图表，编辑器
+    路由异步加载
+15.何时使用keep-alive
+    缓存组件，不需要重复渲染
+    如：多个静态tab页面的切换
+    能优化性能
+16.何时需要使用 beforeDestory
+    接触自定义事件
+    清除定时器
+    解除自定义的dom事件 如 window scroll 
+    会造成内存泄漏
+17. 什么实作用域插槽
+18.vuex中action和mutation的区别
+    最大的区别就是 在action中要处理异步，mutation不可以，mutation涉及做原子操作，action可以整合多个mutation
+19.vue-router常用的路由模式 
+    vue-router声明周期
+        全局路由钩子：2个 (beforeEach、afterEach)
+        组件路由钩子：3个 (beforeRouteEnter、beforeRouteUpdate、beforeRouteLeave)
+    hash 默认
+    H5 history (需要服务端的支持)
+20.如何配置vue-router的异步加载
+    通过import加载组件
+
+
 插值 指令  v-html有xss风险  子组件会被覆盖
 
 1.computed  和 watch
@@ -145,8 +236,6 @@
                 this.list.push(`${Date.now()}`)
                 this.list.push(`${Date.now()}`)
                 this.list.push(`${Date.now()}`)
-
-
                 const ulEle = this.$refs.ul1
                 console.log(ulElem.childNodes.length)  
                 //点击这个函数获取的是添加之前的子元素
@@ -261,61 +350,3 @@
     3)实现数据驱动视图的第一步
     4)考察vue原理的第一题
 -----------vue真题演练！！！！！！！！！！！！！！！！！！！！
-1.v-show 和 v-if 的区别
-    v-show是通过dispaly 控制显示隐藏的
-    v-if 是组件真正的销毁和渲染，频繁切换状态用v-show 否则用v-if
-2.为何在v-for中使用key
-    在v-for中用key是因为在diff算法中通过tag和key来判断是否是sameNode，这样可以减少渲染次数，提升渲染性能
-3.描述vue组件生命周期（父子组件）
-4.vue组件如何通讯
-    父子组件  props和$emit
-    自定义事件  event.$no  event.$off event.$emit
-    vuex
-5.描述组件渲染和更新的过程
-    vue原理的三大模块，第一个就是响应式，监听属性变化，第二部分就是模板渲染，第三块虚拟dom
-6.双向数据绑定v-model的实现原理
-    input元素的value = this.name
-    绑定的input事件 this.name = $event.target.value
-    data更新触发re-render
-7.对于mvvm的理解  画图
-    view -> viewModel（dom listeners directives）->model
-    view <- viewModel（dom listeners directives）<-model
-    dom             vue                            plain javasript objects
-8.computed有什么特点
-    最大的特点就是缓存，data不变的话不会重新计算，所以说合理的使用computed能够提高性能。
-9.为何组件data必须是一个函数
-    组件的export default看似是一个对象，实际编译出来是一个class类，我在每个地方使用这个组件的时候，
-    相当与实例化了一个这个类，实例化执行data的时候如果data不是一个函数的话，那每一个实例的数据都一样了 
-    数据就会共享，达不到我们想要的独立性
-10.ajax请求应该放在哪个生命周期
-    mounted中，js是单线程的 ajax是异步获取数据，放在mounted之前没有用，只会让逻辑更加混乱
-11.如何将组建所有的props传递给子组件
-    $props 
-    <User v-bind="$props" />
-12.如何自己实现v-model
-13.多个组件有相同的逻辑，如何抽离？
-    mixin  
-    缺点：
-14.何时使用异步组件
-    基本上就是加载大组件的时候，加载图表，编辑器
-    路由异步加载
-15.何时使用keep-alive
-    缓存组件，不需要重复渲染
-    如：多个静态tab页面的切换
-    能优化性能
-16.何时需要使用 beforeDestory
-    接触自定义事件
-    清除定时器
-    解除自定义的dom事件 如 window scroll 
-    会造成内存泄漏
-17. 什么实作用域插槽
-18.vuex中action和mutation的区别
-    最大的区别就是 在action中要处理异步，mutation不可以，mutation涉及做原子操作，action可以整合多个mutation
-19.vue-router常用的路由模式
-    hash 默认
-    H5 history (需要服务端的支持)
-20.如何配置vue-router的异步加载
-    通过import加载组件
-
-
-
